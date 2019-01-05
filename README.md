@@ -24,7 +24,7 @@ files.file_name in ["*.htseq.counts*", "*.FPKM.txt*", "*.FPKM-UQ.txt*"] and case
 ### Download Manifest
 Creates a file to download the a manifest containing all of the files found by the query. Requires an internet connection to function.
 Note: if the file name the user selects to save the manifest to already exists, a new file will be created with a version number appended.
-####Example
+#### Example
 Query type: mRNA
 Manifest output:
 ```
