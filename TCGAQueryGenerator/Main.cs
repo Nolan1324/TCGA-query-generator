@@ -16,6 +16,7 @@ namespace TCGAQueryGenerator
     public partial class Main : Form
     {
         string list = "";
+        string types = "";
 
         public Main()
         {
@@ -50,14 +51,32 @@ namespace TCGAQueryGenerator
                 }
 
                 fileNameBox.Text = $"File {name} loaded into query";
-                copyButton.Enabled = true;
-                manifestButton.Enabled = true;
+                typeBox.Enabled = true;
             }
+        }
+
+        private void typeBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (typeBox.SelectedIndex)
+            {
+                case 0:
+                    types = "\"*.htseq.counts*\", \"*.FPKM.txt*\", \"*.FPKM-UQ.txt*\"";
+                    break;
+                case 1:
+                    types = "\"*.isoforms.quantification.txt*\"";
+                    break;
+                case 2:
+                    types = "\"*.htseq.counts*\", \"*.FPKM.txt*\", \"*.FPKM-UQ.txt*\", \"*.isoforms.quantification.txt*\"";
+                    break;
+            }
+
+            copyButton.Enabled = true;
+            manifestButton.Enabled = true;
         }
 
         private void query_Click(object sender, EventArgs e)
         {
-            Clipboard.SetText($"cases.project.program.name in [\"TCGA\"] and cases.submitter_id in [{list}]");
+            Clipboard.SetText($"files.file_name in [{types}] and cases.project.program.name in [\"TCGA\"] and cases.submitter_id in [{list}]");
             fileNameBox.Text = "Query copied to clipboard. Use Ctrl + V to paste";
         }
 
@@ -65,12 +84,25 @@ namespace TCGAQueryGenerator
             SaveFileDialog saveFileDialog = new SaveFileDialog();
             saveFileDialog.DefaultExt = ".txt";
             saveFileDialog.Title = "Choose file to download manifest to";
+            saveFileDialog.OverwritePrompt = false;
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
                 var path = saveFileDialog.FileName;
+
+                //If the file exists, append a version number
+                if (File.Exists(path)) {
+                    var version = 1;
+                    while (File.Exists(path + "." + version + ".txt"))
+                    {
+                        version++;
+                    }
+                    path = path + "." + version + ".txt";
+                }
+
                 var name = path.Split('\\').Last();
 
-                string post = "{\"filters\":{\"op\":\"and\",\"content\":[{\"op\":\"in\",\"content\":{\"field\":\"cases.project.program.name\",\"value\":[\"TCGA\"]}},{\"op\":\"in\",\"content\":{\"field\":\"cases.submitter_id\",\"value\":[" + list + "]}}]},\"size\":\"9999999\"}";
+                string post = "{\"filters\":{\"op\":\"and\",\"content\":[{\"op\":\"in\",\"content\":{\"field\":\"files.file_name\",\"value\":[" + types + "]}},{\"op\":\"in\",\"content\":{\"field\":\"cases.project.program.name\",\"value\":[\"TCGA\"]}},{\"op\":\"in\",\"content\":{\"field\":\"cases.submitter_id\",\"value\":[" + list + "]}}]},\"size\":\"9999999\"}";
+
                 Debug.WriteLine(post);
                 var byteArray = Encoding.UTF8.GetBytes(post);
 
@@ -93,7 +125,7 @@ namespace TCGAQueryGenerator
                     }
                     fileNameBox.Text = $"Mainfest downloaded to {name}";
                 }
-                catch (WebException ex)
+                catch (WebException)
                 {
                     fileNameBox.Text = "Error connecting to API. Make sure internet is working";
                 }

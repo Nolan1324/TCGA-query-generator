@@ -46,9 +46,9 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(12, 69);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(202, 32);
+            this.label2.Size = new System.Drawing.Size(170, 32);
             this.label2.TabIndex = 1;
-            this.label2.Text = "Date: 12/24/18";
+            this.label2.Text = "Date: 1/5/19";
             // 
             // Details
             // 
