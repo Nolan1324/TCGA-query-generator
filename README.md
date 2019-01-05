@@ -14,7 +14,7 @@ TCGA-05-4415-0192
 ### Query Type
 The type of files to query. Either mRNA (.htseq.counts, .FPKM.txt, and .FPKM-UQ.txt) miRNA (.isoforms.quantification.txt) or both.
 ### Copy Query
-The query will be copied to the user's clipboard, which can be pasted at [portal.gdc.cancer.gov/query](https://portal.gdc.cancer.gov/query). Keep in mind longer queries are slow on the website; using the "Download Manifest" feature is ideal.
+The query will be copied to the user's clipboard, which can be pasted at [portal.gdc.cancer.gov/query](https://portal.gdc.cancer.gov/query). Keep in mind longer queries are slow on the website; using the [Download Manifest](#download-manifest) feature is ideal.
 #### Example
 Query type: mRNA
 Clipboard output:
