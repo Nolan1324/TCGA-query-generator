@@ -26,6 +26,7 @@ Creates a file to download the a manifest containing all of the files found by t
 Note: if the file name the user selects to save the manifest to already exists, a new file will be created with a version number appended.
 #### Example
 Query type: mRNA
+
 Manifest output:
 ```
 id	filename	md5	size	state
