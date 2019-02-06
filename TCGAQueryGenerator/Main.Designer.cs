@@ -84,9 +84,9 @@
             this.manifestButton.Enabled = false;
             this.manifestButton.Location = new System.Drawing.Point(254, 194);
             this.manifestButton.Name = "manifestButton";
-            this.manifestButton.Size = new System.Drawing.Size(210, 82);
+            this.manifestButton.Size = new System.Drawing.Size(290, 82);
             this.manifestButton.TabIndex = 5;
-            this.manifestButton.Text = "Download Manifest";
+            this.manifestButton.Text = "Download Manifest and Metadata";
             this.manifestButton.UseVisualStyleBackColor = true;
             this.manifestButton.Click += new System.EventHandler(this.manifest_Click);
             // 
