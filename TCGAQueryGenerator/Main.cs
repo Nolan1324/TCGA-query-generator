@@ -138,7 +138,7 @@ namespace TCGAQueryGenerator
                     pathMetadata = AlterExistingFileName(pathMetadata, ".json");
                     nameMetadata = pathMetadata.Split('\\').Last();
 
-                    WebRequest requestMetadata = WebRequest.Create(new Uri("https://api.gdc.cancer.gov/files"));
+                    WebRequest requestMetadata = WebRequest.Create(new Uri("https://api.gdc.cancer.gov/files?pretty=true"));
                     requestMetadata.Method = "POST";
                     requestMetadata.ContentType = "application/json";
                     requestMetadata.ContentLength = byteArray.Length;
