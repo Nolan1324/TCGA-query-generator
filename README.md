@@ -21,8 +21,8 @@ Clipboard output:
 ```
 files.file_name in ["*.htseq.counts*", "*.FPKM.txt*", "*.FPKM-UQ.txt*"] and cases.project.program.name in ["TCGA"] and cases.submitter_id in ["TCGA-05-4250","TCGA-05-4405","","TCGA-05-4415","","TCGA-05-4417"]
 ```
-### Download Manifest
-This action downloads a manifest file containing all of the files found by the query. Requires an internet connection to function.
+### Download Manifest and Metadata
+This action downloads a manifest file containing all of the files found by the query and a metadata file containing information about those cases. Requires an internet connection to function.
 Note: if the file name the user selects to save the manifest to already exists, a new file will be created with a version number appended.
 #### Example
 Query type: mRNA<br>
