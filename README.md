@@ -1,5 +1,5 @@
 # TCGA Query Generator
-This Windows GUI tool generates a query from a list of TCGA ids to be used at [portal.gdc.cancer.gov/query](https://portal.gdc.cancer.gov/query). It can also directly download the manifest file instead.
+This Windows GUI tool created in Windows Forms generates a query from a list of TCGA ids to be used at [portal.gdc.cancer.gov/query](https://portal.gdc.cancer.gov/query). It can also directly download the manifest file instead.
 ## Usage
 ### Open
 Select a file containing a list of TCGA ids. Ids can be quoted or unquoted. Only the first 12 characters of each ID is used.
@@ -16,17 +16,16 @@ The type of files to query. Either mRNA (.htseq.counts, .FPKM.txt, and .FPKM-UQ.
 ### Copy Query
 The query will be copied to the user's clipboard, which can be pasted at [portal.gdc.cancer.gov/query](https://portal.gdc.cancer.gov/query). Keep in mind longer queries are slow on the website; using the [Download Manifest](#download-manifest) feature is ideal.
 #### Example
-Query type: mRNA
+Query type: mRNA<br>
 Clipboard output:
 ```
 files.file_name in ["*.htseq.counts*", "*.FPKM.txt*", "*.FPKM-UQ.txt*"] and cases.project.program.name in ["TCGA"] and cases.submitter_id in ["TCGA-05-4250","TCGA-05-4405","","TCGA-05-4415","","TCGA-05-4417"]
 ```
 ### Download Manifest
-Creates a file to download the a manifest containing all of the files found by the query. Requires an internet connection to function.
+This action downloads a manifest file containing all of the files found by the query. Requires an internet connection to function.
 Note: if the file name the user selects to save the manifest to already exists, a new file will be created with a version number appended.
 #### Example
-Query type: mRNA
-
+Query type: mRNA<br>
 Manifest output:
 ```
 id	filename	md5	size	state
